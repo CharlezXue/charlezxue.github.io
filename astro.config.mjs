@@ -6,9 +6,7 @@ import icon from "astro-icon"
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://charlezxue.github.io',
-  base: '/astroaccess',
-  trailingSlash: "always",
+  site: 'https://charlezxue.github.io/astroaccess',
   compressHTML: true,
   integrations: [mdx(), icon(), tailwind({
     applyBaseStyles: false,
