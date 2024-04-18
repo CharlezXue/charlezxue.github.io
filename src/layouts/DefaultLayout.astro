@@ -4,12 +4,12 @@ import '../assets/scss/globals.scss'
 import SiteMeta from '../components/SiteMeta.astro'
 import Header from '../components/Header.astro'
 import Footer from '../components/Footer.astro'
-
+const base = import.meta.env.BASE_URL;
 const {
   title = 'Astro',
   description = 'A starter project with accessibility features using Astro static site builder. Contains accessible landmarks, skip links, a dark mode color scheme, better focus outline and keyboard menu navigation.',
   url,
-  image = '/social-preview-image.png',
+  image = base + '/social-preview-image.png',
   author = 'Mark Teekman',
 } = Astro.props
 ---
@@ -21,7 +21,7 @@ const {
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
 
     <!-- favicon -->
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/svg+xml" href={base + "/favicon.svg"} />
 
     <SiteMeta
       title={title}
