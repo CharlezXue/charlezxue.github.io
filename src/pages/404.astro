@@ -1,6 +1,5 @@
 ---
 import DefaultLayout from '../layouts/DefaultLayout.astro'
-const base = import.meta.env.BASE_URL;
 ---
 
 <DefaultLayout title="404">
@@ -13,7 +12,7 @@ const base = import.meta.env.BASE_URL;
   <section class="my-12">
     <div class="space-content container">
       <p class="text-2xl">该页面不存在。</p>
-      <a class="button" href={base + "/"}>回到主页 🚀</a>
+      <a class="button" href="/">返回主页 🚀</a>
     </div>
   </section>
   </main>

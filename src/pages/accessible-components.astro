@@ -12,7 +12,6 @@ import {
   Notification,
   Pagination,
 } from 'accessible-astro-components'
-const base = import.meta.env.BASE_URL;
 ---
 
 <DefaultLayout title="Accessible Components">
@@ -73,8 +72,8 @@ const base = import.meta.env.BASE_URL;
         <div class="space-content">
           <h2>Breadcrumbs</h2>
           <Breadcrumbs>
-            <BreadcrumbsItem href={base + "/"} label="Home" />
-            <BreadcrumbsItem href={base + "/blog"} label="Blog" />
+            <BreadcrumbsItem href={"/"} label="Home" />
+            <BreadcrumbsItem href={"/posts"} label="Blog" />
             <BreadcrumbsItem currentPage={true} label="My blog post" />
           </Breadcrumbs>
         </div>

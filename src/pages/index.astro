@@ -4,7 +4,6 @@ import Hero from '../components/Hero.astro'
 import Feature from '../components/Feature.astro'
 import Counter from '../components/Counter.astro'
 import ContentMedia from '../components/ContentMedia.astro'
-const base = import.meta.env.BASE_URL;
 ---
 
 <DefaultLayout title="Home">
@@ -43,7 +42,7 @@ const base = import.meta.env.BASE_URL;
       </div>
     </div>
   </section>
-  <ContentMedia imgSrc={base + "/accessible-components.webp"}>
+  <ContentMedia imgSrc={"/accessible-components.webp"}>
     <h2>Accessible Components</h2>
     <p class="text-2xl">
       This theme provides plenty of tried and tested Accessible Astro Components. Some are native to this theme and a
@@ -52,7 +51,7 @@ const base = import.meta.env.BASE_URL;
       >. They'll get you up and running in building an accessible solution for your visitors.
     </p>
   </ContentMedia>
-  <ContentMedia imgSrc={base + "/wcag-compliant.webp"} reverseImg={true}>
+  <ContentMedia imgSrc={"/wcag-compliant.webp"} reverseImg={true}>
     <h2>WCAG 2.1 AA Compliant</h2>
     <p class="text-2xl">
       Using semantic HTML, landmarks, skip links, screen reader friendly content, aria-labels, keyboard accessible

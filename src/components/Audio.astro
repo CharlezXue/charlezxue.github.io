@@ -1,13 +1,12 @@
 ---
 // import 'plyr';
 
-const base = import.meta.env.BASE_URL;
 const { src } = Astro.props;
 
 ---
 
 <audio id="player" controls>
-    <source src={base + src} type="audio/mp3" />
+    <source src={src} type="audio/mp3" />
 </audio>
 
 <script is:inline>new Plyr('#player', {

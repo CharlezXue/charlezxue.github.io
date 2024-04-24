@@ -4,12 +4,11 @@ import '../assets/scss/globals.scss'
 import SiteMeta from '../components/SiteMeta.astro'
 import Header from '../components/Header.astro'
 import Footer from '../components/Footer.astro'
-const base = import.meta.env.BASE_URL;
 const {
   title = 'Astro',
   description = 'A starter project with accessibility features using Astro static site builder. Contains accessible landmarks, skip links, a dark mode color scheme, better focus outline and keyboard menu navigation.',
   url,
-  image = base + '/social-preview-image.png',
+  image = '/social-preview-image.png',
   author = 'Mark Teekman',
 } = Astro.props
 ---
@@ -25,7 +24,7 @@ const {
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@100..900&family=Noto+Serif+SC&display=swap" rel="stylesheet">
 
     <!-- favicon -->
-    <link rel="icon" type="image/svg+xml" href={base + "/favicon.svg"} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <!-- Plyr -->
     <script is:inline src="https://cdn.plyr.io/3.7.8/plyr.js"></script>
     <link rel="stylesheet" href="https://cdn.plyr.io/3.7.8/plyr.css" />
