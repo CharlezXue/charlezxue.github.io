@@ -105,6 +105,27 @@ table {
   table-layout: fixed;
 }
 
+figure {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+figcaption {
+  margin-top: 0.25rem;
+  text-align: center;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 4rem;
+
+  @media (min-width: 800px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
 [hidden] {
   display: none !important;
 }

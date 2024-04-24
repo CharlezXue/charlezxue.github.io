@@ -19,9 +19,16 @@ const {
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <!-- webfont -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@100..900&family=Noto+Serif+SC&display=swap" rel="stylesheet">
 
     <!-- favicon -->
     <link rel="icon" type="image/svg+xml" href={base + "/favicon.svg"} />
+    <!-- Plyr -->
+    <script is:inline src="https://cdn.plyr.io/3.7.8/plyr.js"></script>
+    <link rel="stylesheet" href="https://cdn.plyr.io/3.7.8/plyr.css" />
 
     <SiteMeta
       title={title}
@@ -35,9 +42,7 @@ const {
   </head>
   <body>
     <Header />
-    <main id="main-content" transition:animate="fade">
-      <slot />
-    </main>
+    <slot />
     <Footer />
     <style lang="scss" is:global>
       // theme settings
@@ -46,8 +51,8 @@ const {
         --radius-large: 6px;
         --gap-default: 2rem;
         --font-measure: 70ch;
-        --font-family-default: 'Open Sans', sans-serif;
-        --font-family-special: 'Open Sans', sans-serif;
+        --font-family-default: 'Noto', 'Noto Sans SC', 'Noto Sans', 'Source Han Sans', sans-serif;
+        --font-family-special: 'Noto Serif', 'Noto Serif SC', 'Noto Serif', 'Source Han Serif SC', 'Source Han Serif', serif;
         // light theme
         --font-color: var(--neutral-900);
         --action-color: var(--primary-300);
@@ -93,6 +98,17 @@ const {
         padding: 1rem;
         border-radius: 0.35rem;
         border: 2px solid var(--action-color);
+      }
+
+      .plyr {
+        // min-width: 400px;
+        --plyr-color-main: var(--action-color);
+        // --plyr-video-background: var(--background);
+        --plyr-audio-controls-background: var(--background);
+        --plyr-audio-control-color: var(--font-color);
+        --plyr-audio-control-color-hover: var(--neutral-background);
+        --plyr-menu-background: var(--background);
+        --plyr-menu-color	: var(--font-color);
       }
 
       body .pagination a {

@@ -9,11 +9,11 @@ const base = import.meta.env.BASE_URL;
 <div id="main-navigation" class="is-desktop py-8">
   <div class="container">
     <a href={base + "/"} class="flex items-center gap-2 !no-underline">
-      <Image src={logo} alt="Your Logo" width="47" height="37" />
+      <Image src={logo} alt="" width="47" height="37" />
       <span class="font-bold">Accessible Astro</span>
     </a>
     <div class="wrapper">
-      <nav class="desktop-menu" aria-label="Main navigation desktop">
+      <nav class="desktop-menu" aria-label="站点导航：桌面端">
         <ul class="menu">
           <slot />
         </ul>
@@ -21,7 +21,7 @@ const base = import.meta.env.BASE_URL;
       <DarkMode />
       <ResponsiveToggle />
     </div>
-    <nav class="mobile-menu" aria-label="Main navigation mobile">
+    <nav class="mobile-menu" aria-label="站点导航：移动端">
       <ul class="menu">
         <slot />
       </ul>
@@ -45,10 +45,10 @@ const base = import.meta.env.BASE_URL;
         const menuItems = [...menu.querySelectorAll('a:not([rel*="external"])')] as HTMLAnchorElement[]
 
         menuItems.forEach((menuItem) => {
-          if (currenPathname.includes(menuItem.pathname.replaceAll('/', '')) && menuItem.textContent !== 'Home') {
+          if (currenPathname.includes(menuItem.pathname.replaceAll('/', '')) && menuItem.textContent !== '主页') {
             menuItem.classList.add('is-active')
             menuItem.setAttribute('aria-current', 'page')
-          } else if (menuItem.textContent === 'Home' && currenPathname === '/') {
+          } else if (menuItem.textContent === '主页' && currenPathname === '/') {
             menuItem.classList.add('is-active')
             menuItem.setAttribute('aria-current', 'page')
           }
@@ -269,7 +269,7 @@ const base = import.meta.env.BASE_URL;
     .wrapper {
       display: flex;
       align-items: center;
-      gap: 1rem;
+      gap: 1.5rem;
     }
 
     nav {

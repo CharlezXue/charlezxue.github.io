@@ -1,13 +1,40 @@
 ---
 import DefaultLayout from './DefaultLayout.astro'
-
-const { frontmatter } = Astro.props
+import { Breadcrumbs, BreadcrumbsItem } from 'accessible-astro-components';
+import TableOfContents from '../components/TableOfContents.astro'
+import Audio from '../components/Audio.astro'
+const base = import.meta.env.BASE_URL;
+const { frontmatter, headings } = Astro.props
 ---
 
 <DefaultLayout title={frontmatter.title}>
-  <div class="container">
-    <div class="space-content my-12">
-      <slot />
+    <div class="container">
+      <Breadcrumbs>
+        <BreadcrumbsItem href={base + "/"} label="主页" />
+        <BreadcrumbsItem href={base + "/posts"} label="故事" />
+        <BreadcrumbsItem currentPage={true} label={frontmatter.title} />
+      </Breadcrumbs>
+      <div class='grid grid-cols-1 md:grid-cols-[20%_auto] gap-10 mt-4'>
+        <!-- aside nav -->
+        <aside class='md:flex mt-16 flex-col gap-8 hidden'>
+          <div class='sticky top-24 self-start hidden md:block transition-all duration-200'>
+            {headings && headings.length > 0 && <TableOfContents {headings} />}
+          </div>
+        </aside>
+        <!-- main content -->
+        <main id="main-content">
+          
+          <article class="space-content my-12">
+          <h1>{frontmatter.title}</h1>
+          <div class="flex flex-col mt-8">
+            <p class="my-4">本文可以通过音频收听：</p>
+            <Audio src={frontmatter.audio}/>
+          </div>
+          <hr>
+          <slot />
+          </article>
+        </main>
+      </div>
     </div>
-  </div>
 </DefaultLayout>
+

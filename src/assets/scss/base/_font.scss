@@ -6,7 +6,7 @@
 
 @font-face {
   font-family: 'Open Sans';
-  src: local('Open Sans ExtraBold'), local('OpenSans-ExtraBold'), url('/fonts/OpenSans-ExtraBold.woff2') format('woff2'),
+  src: local('Open Sans ExtraBold'), local('OpenSans-ExtraBold'), url('../../../../public/fonts/OpenSans-ExtraBold.woff2') format('woff2'),
     url('/fonts/OpenSans-ExtraBold.woff') format('woff');
   font-weight: bold;
   font-style: normal;
@@ -40,13 +40,22 @@
   font-display: swap;
 }
 
+@font-face {
+  font-family: 'ZhuqueFangsong';
+  src: local('ZhuqueFangsong Regular'), local('ZhuqueFangsong-Regular'), url('/astroaccess/fonts/ZhuqueFangsong-Regular.woff2') format('woff2'),
+    url('/astroaccess/fonts/ZhuqueFangsong-Regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 body {
   font-family: var(--font-family-default);
   text-shadow: rgba(0, 0, 0, 0.01) 0 0 1px;
   text-rendering: optimizeLegibility;
   font-synthesis: none;
-  font-size: 1rem;
-  line-height: 1.5rem;
+  font-size: 1.1rem;
+  line-height: 1.75rem;
   -webkit-text-size-adjust: 100%;
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
@@ -71,13 +80,17 @@ body {
     word-break: break-word;
   }
 
-  :where(h1, h2) {
-    font-family: var(--font-family-special);
+  em {
+    font-family: 'ZhuqueFangsong';
+  }
+
+  figcaption{
+    font-size: 1rem;
   }
 
   h1,
   h2 {
-    font-weight: 800;
+    font-weight: 700;
   }
 
   h3,

@@ -1,20 +1,25 @@
 ---
 import Navigation from '../components/Navigation.astro'
-import { SkipLinks } from 'accessible-astro-components'
 import { Icon } from 'astro-icon/components'
 const base = import.meta.env.BASE_URL;
 ---
 
 <header>
-  <SkipLinks />
+  <div class="skip-links">
+    <a href="#main-content">跳转到主要内容</a>
+  </div>
+  
   <Navigation>
     <li class="menu-item">
-      <a href={base + "/"}>Home</a>
+      <a href={base + "/"}>主页</a>
     </li>
     <li class="menu-item">
-      <a href={base + "/blog/"}>Blog</a>
+      <a href={base + "/posts/"}>故事</a>
     </li>
-    <li class="menu-item has-dropdown">
+    <li class="menu-item">
+      <a href={base + "/accessible-components"}>样式</a>
+    </li>
+    <!-- <li class="menu-item has-dropdown">
       <button aria-haspopup="true" aria-expanded="false">Example Pages</button>
       <ul class="dropdown-menu">
         <li class="submenu-item">
@@ -27,15 +32,12 @@ const base = import.meta.env.BASE_URL;
           <a href={base + "/accessible-components"}>Accessible Components</a>
         </li>
       </ul>
-    </li>
-    <li class="menu-item">
-      <a href="https://accessible-astro.dev" title="external link" rel="external noopener noreferrer">External Link</a>
-    </li>
-    <li class="menu-item type-icon">
-      <a href="https://github.com/markteekman/accessible-astro-starter" title="Go to the GitHub page">
+    </li> -->
+    <!-- <li class="menu-item type-icon">
+      <a href="https://github.com/markteekman/accessible-astro-starter" aria-label="Go to the GitHub page">
         <Icon name="ion:logo-github" />
       </a>
-    </li>
+    </li> -->
   </Navigation>
 </header>
 
@@ -62,5 +64,22 @@ const base = import.meta.env.BASE_URL;
         }
       }
     }
+  }
+  .skip-links a {
+    color: var(--action-color, #222);
+    background-color: var(--background, #fff);
+    border-bottom-right-radius: 6px;
+    padding: 1rem 3.25rem;
+    position: absolute;
+    display: block;
+    z-index: 9999;
+    top: -100vh;
+    left: 0;
+  }
+
+  .skip-links a:hover,
+  .skip-links a:focus {
+    top: 0;
+    outline-offset: 2px;
   }
 </style>

@@ -4,6 +4,7 @@ const base = import.meta.env.BASE_URL;
 ---
 
 <DefaultLayout title="404">
+  <main id="main-content">
   <section class="my-12">
     <div class="container">
       <h1>404</h1>
@@ -11,8 +12,9 @@ const base = import.meta.env.BASE_URL;
   </section>
   <section class="my-12">
     <div class="space-content container">
-      <p class="text-2xl">This page does not exist. Don't worry though, we got you.</p>
-      <a class="button" href={base + "/"}>Let's get you home Astronout 🚀</a>
+      <p class="text-2xl">该页面不存在。</p>
+      <a class="button" href={base + "/"}>回到主页 🚀</a>
     </div>
   </section>
+  </main>
 </DefaultLayout>

@@ -1,0 +1,46 @@
+---
+// import { cn } from '@/utils'
+const { heading } = Astro.props
+
+type Heading = {
+	depth: number
+	text: string
+	slug: string
+	subheadings: Heading[]
+}
+
+export interface Props {
+	heading: Heading
+}
+---
+
+<li class='flex flex-col'>
+	<a
+		href={'#' + heading.slug}
+		class='bg-slate-200 dark:bg-slate-800 hover:bg-indigo-200 dark:hover:bg-indigo-200 py-1 px-4 rounded-xl mb-2 first-letter:uppercase w-fit navlink'
+	>
+		{heading.text}
+	</a>
+	{
+		heading.subheadings.length > 0 && (
+			<ul class='ml-3'>
+				{heading.subheadings.map((subheading) => (
+					<Astro.self heading={subheading} />
+				))}
+			</ul>
+		)
+	}
+</li>
+
+<style lang="scss">
+	a.navlink {
+		text-decoration: none;
+	
+	&:hover,
+    &:focus {
+      color: var(--action-color-state);
+      text-decoration: underline;
+	  text-underline-offset: 3px;
+    }
+	}
+</style>
