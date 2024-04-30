@@ -11,7 +11,7 @@ const { src = '/astronaut-hero-img.webp' } = Astro.props;
       <div class="flex flex-col items-center gap-8 lg:items-start">
         <h1 class="text-center text-6xl lg:text-left lg:text-8xl">
           <span class="text-gradient">自倡导</span>是
-          <div><span id="def"></span><sup><a id="switch-def" class="text-3xl lg:text-5xl" href="#">🔄</a></sup></div>
+          <div><span id="def">什么？</span><sup><a id="switch-def" class="text-3xl lg:text-5xl" href="#">🔄</a></sup></div>
         </h1>
       </div>
       <div>
@@ -22,7 +22,10 @@ const { src = '/astronaut-hero-img.webp' } = Astro.props;
 </section>
 <script is:inline data-astro-rerun>
   // Find all buttons with the `alert` class on the page.
-  document.querySelector('#def').textContent = [
+  document.querySelector('#switch-def').addEventListener('click', 
+  (event) => {
+    event.preventDefault();
+    document.querySelector('#def').textContent = [
     "为自己说话",
     "追求个人权利",
     "主动争取需求",
@@ -34,6 +37,7 @@ const { src = '/astronaut-hero-img.webp' } = Astro.props;
     "推动意识提高",
     "改变不公正现状"
   ].at(Math.floor(Math.random() * 10));
+  });
 </script>
 <style lang="scss">
   .text-gradient {
