@@ -117,13 +117,13 @@ figcaption {
 }
 
 .row {
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-gap: 4rem;
-
-  @media (min-width: 800px) {
-    grid-template-columns: repeat(2, 1fr);
-  }
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  // @media (min-width: 800px) {
+  //   flex-wrap: wrap;
+  // }
 }
 
 [hidden] {
