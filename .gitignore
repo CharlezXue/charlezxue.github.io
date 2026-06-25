@@ -1,6 +1,9 @@
 # build output
 dist/
 
+# copied assets (source of truth in /photos)
+public/photos/
+
 # generated types
 .astro/
 

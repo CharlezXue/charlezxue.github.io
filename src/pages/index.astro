@@ -1,11 +1,244 @@
 ---
-import Welcome from '../components/Welcome.astro';
 import Layout from '../layouts/Layout.astro';
+import Gallery from '../components/Gallery.astro';
+import fs from 'fs';
+import path from 'path';
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+const photosDir = path.join(process.cwd(), 'public', 'photos');
+const photoFiles = fs.readdirSync(photosDir)
+  .filter(f => /\.(jpg|jpeg|png|webp|gif)$/i.test(f))
+  .sort();
 ---
 
 <Layout>
-	<Welcome />
+  <header class="hero">
+    <div class="hero-content">
+      <div class="avatar-frame">
+        <img class="avatar" src="/user_avatar.jpg" alt="Photographer" />
+      </div>
+      <h1 class="hero-title-en">Mise-en-scène</h1>
+      <p class="hero-subtitle">靜幀之間 · 藍調時刻</p>
+      <p class="hero-desc">
+        Cinematic photography in the language of melancholia —
+        <br class="break" />
+        lo-fi, grained, and suspended in blue.
+      </p>
+      <a href="#gallery" class="scroll-hint">
+        <span>View gallery</span>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M7 13l5 5 5-5M7 6l5 5 5-5"/>
+        </svg>
+      </a>
+    </div>
+  </header>
+
+  <section id="gallery" class="section">
+    <div class="section-header">
+      <h2 class="section-title">作品 · Works</h2>
+      <p class="section-desc">{photoFiles.length} frames</p>
+    </div>
+    <Gallery photos={photoFiles} />
+  </section>
+
+  <footer class="footer">
+    <div class="footer-content">
+      <p>&copy; {new Date().getFullYear()}</p>
+      <div class="footer-links">
+        <a href="mailto:hello@example.com">Contact</a>
+        <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">Instagram</a>
+      </div>
+    </div>
+  </footer>
 </Layout>
+
+<style>
+  .hero {
+    position: relative;
+    z-index: 1;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    text-align: center;
+  }
+
+  .hero-content {
+    max-width: 720px;
+  }
+
+  .avatar-frame {
+    width: 120px;
+    height: 120px;
+    margin: 0 auto 1.5rem;
+    border-radius: 50%;
+    padding: 4px;
+    background: linear-gradient(135deg, var(--accent), var(--cyan));
+    box-shadow: 0 0 30px rgba(255, 107, 53, 0.2), 0 0 60px rgba(0, 188, 212, 0.1);
+    animation: avatar-glow 4s ease-in-out infinite alternate;
+  }
+
+  .avatar {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    display: block;
+    filter: grayscale(0.3) contrast(1.1);
+    transition: filter 0.4s ease;
+  }
+
+  .avatar-frame:hover .avatar {
+    filter: grayscale(0) contrast(1);
+  }
+
+  @keyframes avatar-glow {
+    0% { box-shadow: 0 0 30px rgba(255, 107, 53, 0.2), 0 0 60px rgba(0, 188, 212, 0.1); }
+    100% { box-shadow: 0 0 40px rgba(255, 107, 53, 0.35), 0 0 80px rgba(0, 188, 212, 0.15); }
+  }
+
+  .hero-title-en {
+    font-size: clamp(2.5rem, 10vw, 6rem);
+    font-weight: 900;
+    letter-spacing: -0.03em;
+    line-height: 1;
+    background: linear-gradient(135deg, #ff6b35 0%, #ff4500 40%, #00bcd4 70%, #6a0dad 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    filter: drop-shadow(0 4px 20px rgba(255, 107, 53, 0.3));
+    margin-bottom: 1rem;
+  }
+
+  .hero-subtitle {
+    font-size: clamp(1.2rem, 4vw, 2.2rem);
+    font-weight: 300;
+    letter-spacing: 0.15em;
+    color: var(--cyan);
+    margin-bottom: 1.5rem;
+    opacity: 0.8;
+  }
+
+  .hero-desc {
+    font-size: clamp(0.95rem, 2vw, 1.15rem);
+    color: var(--text-muted);
+    line-height: 1.8;
+    letter-spacing: 0.02em;
+    margin-bottom: 2.5rem;
+  }
+
+  .break {
+    display: none;
+  }
+
+  @media (min-width: 480px) {
+    .break {
+      display: block;
+    }
+  }
+
+  .scroll-hint {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 0.875rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+
+  .scroll-hint:hover {
+    color: var(--accent);
+  }
+
+  .scroll-hint svg {
+    animation: bounce 2s ease-in-out infinite;
+  }
+
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(4px); }
+  }
+
+  .section {
+    position: relative;
+    z-index: 1;
+    padding: 4rem 0 6rem;
+  }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: 3rem;
+    padding: 0 1rem;
+  }
+
+  .section-title {
+    font-size: clamp(1.5rem, 4vw, 2.5rem);
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.5rem;
+  }
+
+  .section-desc {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    letter-spacing: 0.1em;
+  }
+
+  .footer {
+    position: relative;
+    z-index: 1;
+    padding: 3rem 1rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+  }
+
+  .footer-content {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+  }
+
+  .footer-links {
+    display: flex;
+    gap: 1.5rem;
+  }
+
+  .footer-links a {
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .footer-links a:hover {
+    color: var(--accent);
+  }
+
+  @media (max-width: 480px) {
+    .hero {
+      min-height: 80vh;
+      padding: 1.5rem;
+    }
+
+    .avatar-frame {
+      width: 90px;
+      height: 90px;
+      margin-bottom: 1rem;
+    }
+
+    .section {
+      padding: 2rem 0 4rem;
+    }
+
+    .footer-content {
+      flex-direction: column;
+      gap: 0.75rem;
+      text-align: center;
+    }
+  }
+</style>
